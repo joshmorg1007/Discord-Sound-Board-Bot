@@ -99,6 +99,6 @@ def update_json_table():
         json.dump(table, soundboard_table)
 
 
-token = "OTU0ODUxNTczNzQ4NjE3MjM3.YjZI0w.OMRvxmhYy87XG_rJA09WpgvXycg"
+token = os.getenv("TOKEN")
 bot.run(token)
 sys.stout.flush()
