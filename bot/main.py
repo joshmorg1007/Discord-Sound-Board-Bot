@@ -26,6 +26,7 @@ async def play(ctx, *args):
 
     if(clip_path is None):
         await ctx.send("No clip with name: " + args[0])
+        return
 
     # Sets up event to allow the bot to wait until the clip has been played before leaving
     stop_event = asyncio.Event()
