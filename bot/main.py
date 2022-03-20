@@ -10,6 +10,7 @@ with open("../audio/soundboard.json") as soundboard_table:
     table = json.load(soundboard_table)
 print(table)
 
+
 @bot.event
 async def on_ready():
     print("Connected")
@@ -29,9 +30,11 @@ async def play(ctx, *args):
     # Sets up event to allow the bot to wait until the clip has been played before leaving
     stop_event = asyncio.Event()
     loop = asyncio.get_event_loop()
+
     def wait_for_audio(error):
         if error:
             print(error)
+
         def clear():
             stop_event.set()
         loop.call_soon_threadsafe(clear)
@@ -48,7 +51,8 @@ async def play(ctx, *args):
     server = ctx.message.guild
     voice_channel = server.voice_client
 
-    voice_channel.play(discord.FFmpegPCMAudio(clip_path, executable='ffmpeg.exe'), after=wait_for_audio)
+    voice_channel.play(discord.FFmpegPCMAudio(
+        clip_path, executable='ffmpeg'), after=wait_for_audio)
 
     # Leave the voice voice channel
     voice_client = ctx.message.guild.voice_client
@@ -59,12 +63,14 @@ async def play(ctx, *args):
     else:
         await ctx.send("The bot is not connected to a voice channel.")
 
+
 @bot.command()
 async def list_clips(ctx, *args):
     working_string = "**List Of Clip Names:**\n"
     for key in table:
         working_string += key + "\n"
     await ctx.send(working_string)
+
 
 @bot.command()
 async def add_clip(ctx, *args):
@@ -91,8 +97,10 @@ async def add_clip(ctx, *args):
     table[args[0]] = "../audio/" + clip.filename
     print(clip.filename)
 
+
 def verify_wav(wav_filepath):
     print("TODO")
+
 
 def update_json_table():
     with open("../audio/soundboard.json") as soundboard_table:
