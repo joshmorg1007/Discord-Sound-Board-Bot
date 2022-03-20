@@ -95,6 +95,7 @@ async def add_clip(ctx, *args):
     await clip.save(fp="../audio/" + clip.filename)
     verify_wav("../audio/" + clip.filename)
     table[args[0]] = "../audio/" + clip.filename
+    update_json_table()
     print(clip.filename)
 
 
