@@ -6,7 +6,7 @@ import asyncio
 import json
 
 bot = commands.Bot(command_prefix="!", description="Simple soundboard bot")
-with open("/root/Discord-Sound-Board-Bot/audio/soundboard.json") as soundboard_table:
+with open("/root/Discord-Sound-Board-Bot/audio/soundboard.json", 'r') as soundboard_table:
     table = json.load(soundboard_table)
 print(table)
 
@@ -104,7 +104,7 @@ def verify_wav(wav_filepath):
 
 
 def update_json_table():
-    with open("/root/Discord-Sound-Board-Bot/audio/soundboard.json") as soundboard_table:
+    with open("/root/Discord-Sound-Board-Bot/audio/soundboard.json", 'w') as soundboard_table:
         json.dump(table, soundboard_table)
 
 
