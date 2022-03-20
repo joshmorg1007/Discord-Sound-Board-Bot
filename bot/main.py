@@ -52,7 +52,7 @@ async def play(ctx, *args):
     voice_channel = server.voice_client
 
     voice_channel.play(discord.FFmpegPCMAudio(
-        clip_path, executable='ffmpeg'), after=wait_for_audio)
+        clip_path, executable='/usr/bin/ffmpeg'), after=wait_for_audio)
 
     # Leave the voice voice channel
     voice_client = ctx.message.guild.voice_client
